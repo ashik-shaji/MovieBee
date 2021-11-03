@@ -7,6 +7,7 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
+import '../movie/booking_result_section/booking_result_page.dart' as _i18;
 import '../movie/booking_sections/checkout_movie_page.dart' as _i14;
 import '../movie/booking_sections/date_time_theater_selection_page.dart'
     as _i12;
@@ -15,6 +16,8 @@ import '../movie/home/detailed_cs_view_page.dart' as _i11;
 import '../movie/home/detailed_view_page.dart' as _i10;
 import '../movie/home/home_page.dart' as _i5;
 import '../movie/home/password_hint_page.dart' as _i9;
+import '../movie/ticket/ticket_page.dart' as _i19;
+import '../movie/ticket/tickets_display_page.dart' as _i17;
 import '../movie/wallet/topup_wallet_page.dart' as _i16;
 import '../movie/wallet/view_balance_page.dart' as _i15;
 import '../sign_in_up/get_otp_page.dart' as _i7;
@@ -160,6 +163,46 @@ class AppRouter extends _i1.RootStackRouter {
         builder: (data) {
           final args = data.argsAs<TopUpWalletPageRouteArgs>();
           return _i16.TopUpWalletPage(key: args.key, balance: args.balance);
+        }),
+    TicketDisplayPageRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return _i17.TicketDisplayPage();
+        }),
+    BookingResultPageRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<BookingResultPageRouteArgs>();
+          return _i18.BookingResultPage(
+              key: args.key,
+              movieName: args.movieName,
+              movieImage: args.movieImage,
+              rating: args.rating,
+              stars: args.stars,
+              gerne: args.gerne,
+              movieDay: args.movieDay,
+              movieTime: args.movieTime,
+              theater: args.theater,
+              seatName: args.seatName,
+              updatedSeatsList: args.updatedSeatsList,
+              totalAmount: args.totalAmount);
+        }),
+    TicketPageRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<TicketPageRouteArgs>();
+          return _i19.TicketPage(
+              key: args.key,
+              ticketId: args.ticketId,
+              movieName: args.movieName,
+              movieImage: args.movieImage,
+              rating: args.rating,
+              stars: args.stars,
+              gerne: args.gerne,
+              movieDay: args.movieDay,
+              movieTime: args.movieTime,
+              theater: args.theater,
+              seatName: args.seatName);
         })
   };
 
@@ -184,7 +227,12 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(CheckoutMoviePageRoute.name,
             path: '/checkout-movie-page'),
         _i1.RouteConfig(ViewBalancePageRoute.name, path: '/view-balance-page'),
-        _i1.RouteConfig(TopUpWalletPageRoute.name, path: '/top-up-wallet-page')
+        _i1.RouteConfig(TopUpWalletPageRoute.name, path: '/top-up-wallet-page'),
+        _i1.RouteConfig(TicketDisplayPageRoute.name,
+            path: '/ticket-display-page'),
+        _i1.RouteConfig(BookingResultPageRoute.name,
+            path: '/booking-result-page'),
+        _i1.RouteConfig(TicketPageRoute.name, path: '/ticket-page')
       ];
 }
 
@@ -596,4 +644,152 @@ class TopUpWalletPageRouteArgs {
   final _i2.Key? key;
 
   final String? balance;
+}
+
+class TicketDisplayPageRoute extends _i1.PageRouteInfo {
+  const TicketDisplayPageRoute() : super(name, path: '/ticket-display-page');
+
+  static const String name = 'TicketDisplayPageRoute';
+}
+
+class BookingResultPageRoute
+    extends _i1.PageRouteInfo<BookingResultPageRouteArgs> {
+  BookingResultPageRoute(
+      {_i2.Key? key,
+      required String movieName,
+      required String movieImage,
+      required String rating,
+      required String stars,
+      required String gerne,
+      required String movieDay,
+      required String movieTime,
+      required String theater,
+      required String seatName,
+      required String updatedSeatsList,
+      required int totalAmount})
+      : super(name,
+            path: '/booking-result-page',
+            args: BookingResultPageRouteArgs(
+                key: key,
+                movieName: movieName,
+                movieImage: movieImage,
+                rating: rating,
+                stars: stars,
+                gerne: gerne,
+                movieDay: movieDay,
+                movieTime: movieTime,
+                theater: theater,
+                seatName: seatName,
+                updatedSeatsList: updatedSeatsList,
+                totalAmount: totalAmount));
+
+  static const String name = 'BookingResultPageRoute';
+}
+
+class BookingResultPageRouteArgs {
+  const BookingResultPageRouteArgs(
+      {this.key,
+      required this.movieName,
+      required this.movieImage,
+      required this.rating,
+      required this.stars,
+      required this.gerne,
+      required this.movieDay,
+      required this.movieTime,
+      required this.theater,
+      required this.seatName,
+      required this.updatedSeatsList,
+      required this.totalAmount});
+
+  final _i2.Key? key;
+
+  final String movieName;
+
+  final String movieImage;
+
+  final String rating;
+
+  final String stars;
+
+  final String gerne;
+
+  final String movieDay;
+
+  final String movieTime;
+
+  final String theater;
+
+  final String seatName;
+
+  final String updatedSeatsList;
+
+  final int totalAmount;
+}
+
+class TicketPageRoute extends _i1.PageRouteInfo<TicketPageRouteArgs> {
+  TicketPageRoute(
+      {_i2.Key? key,
+      required String? ticketId,
+      required String? movieName,
+      required String? movieImage,
+      required String? rating,
+      required String? stars,
+      required String? gerne,
+      required String? movieDay,
+      required String? movieTime,
+      required String? theater,
+      required String? seatName})
+      : super(name,
+            path: '/ticket-page',
+            args: TicketPageRouteArgs(
+                key: key,
+                ticketId: ticketId,
+                movieName: movieName,
+                movieImage: movieImage,
+                rating: rating,
+                stars: stars,
+                gerne: gerne,
+                movieDay: movieDay,
+                movieTime: movieTime,
+                theater: theater,
+                seatName: seatName));
+
+  static const String name = 'TicketPageRoute';
+}
+
+class TicketPageRouteArgs {
+  const TicketPageRouteArgs(
+      {this.key,
+      required this.ticketId,
+      required this.movieName,
+      required this.movieImage,
+      required this.rating,
+      required this.stars,
+      required this.gerne,
+      required this.movieDay,
+      required this.movieTime,
+      required this.theater,
+      required this.seatName});
+
+  final _i2.Key? key;
+
+  final String? ticketId;
+
+  final String? movieName;
+
+  final String? movieImage;
+
+  final String? rating;
+
+  final String? stars;
+
+  final String? gerne;
+
+  final String? movieDay;
+
+  final String? movieTime;
+
+  final String? theater;
+
+  final String? seatName;
 }

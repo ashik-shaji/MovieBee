@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:moviebee/application/movie/bloc/movie_bloc_bloc.dart';
 import 'package:moviebee/injection.dart';
+import 'package:moviebee/presentation/core/contants.dart';
 import 'package:moviebee/presentation/routes/router.gr.dart';
 
 List<String> personMovieList = [];
@@ -53,7 +54,10 @@ class SeatSelectionPage extends StatelessWidget {
                   seatListFinal = '';
                   context.router.pop();
                 },
-                icon: const Icon(Icons.arrow_back),
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: kPrimaryColor,
+                ),
               ),
             ),
             const SizedBox(height: 50),
@@ -63,7 +67,7 @@ class SeatSelectionPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white70,
+                  color: kPrimaryColor,
                 ),
               ),
             ),
@@ -72,11 +76,16 @@ class SeatSelectionPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 40, right: 40),
               child: Row(
                 children: [
-                  MovieSeat(seatNo: 'A1', movieName: movieName),
-                  MovieSeat(seatNo: 'A2', movieName: movieName),
-                  MovieSeat(seatNo: 'A3', movieName: movieName),
-                  MovieSeat(seatNo: 'A4', movieName: movieName),
-                  MovieSeat(seatNo: 'A5', movieName: movieName),
+                  MovieSeat(
+                      seatNo: 'A1', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'A2', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'A3', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'A4', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'A5', movieName: movieName, theater: theater),
                 ],
               ),
             ),
@@ -84,11 +93,16 @@ class SeatSelectionPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 40, right: 40),
               child: Row(
                 children: [
-                  MovieSeat(seatNo: 'B1', movieName: movieName),
-                  MovieSeat(seatNo: 'B2', movieName: movieName),
-                  MovieSeat(seatNo: 'B3', movieName: movieName),
-                  MovieSeat(seatNo: 'B4', movieName: movieName),
-                  MovieSeat(seatNo: 'B5', movieName: movieName),
+                  MovieSeat(
+                      seatNo: 'B1', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'B2', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'B3', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'B4', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'B5', movieName: movieName, theater: theater),
                 ],
               ),
             ),
@@ -96,11 +110,16 @@ class SeatSelectionPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 40, right: 40),
               child: Row(
                 children: [
-                  MovieSeat(seatNo: 'C1', movieName: movieName),
-                  MovieSeat(seatNo: 'C2', movieName: movieName),
-                  MovieSeat(seatNo: 'C3', movieName: movieName),
-                  MovieSeat(seatNo: 'C4', movieName: movieName),
-                  MovieSeat(seatNo: 'C5', movieName: movieName),
+                  MovieSeat(
+                      seatNo: 'C1', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'C2', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'C3', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'C4', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'C5', movieName: movieName, theater: theater),
                 ],
               ),
             ),
@@ -108,11 +127,16 @@ class SeatSelectionPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 40, right: 40),
               child: Row(
                 children: [
-                  MovieSeat(seatNo: 'D1', movieName: movieName),
-                  MovieSeat(seatNo: 'D2', movieName: movieName),
-                  MovieSeat(seatNo: 'D3', movieName: movieName),
-                  MovieSeat(seatNo: 'D4', movieName: movieName),
-                  MovieSeat(seatNo: 'D5', movieName: movieName),
+                  MovieSeat(
+                      seatNo: 'D1', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'D2', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'D3', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'D4', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'D5', movieName: movieName, theater: theater),
                 ],
               ),
             ),
@@ -120,11 +144,16 @@ class SeatSelectionPage extends StatelessWidget {
               padding: const EdgeInsets.only(left: 40, right: 40),
               child: Row(
                 children: [
-                  MovieSeat(seatNo: 'E1', movieName: movieName),
-                  MovieSeat(seatNo: 'E2', movieName: movieName),
-                  MovieSeat(seatNo: 'E3', movieName: movieName),
-                  MovieSeat(seatNo: 'E4', movieName: movieName),
-                  MovieSeat(seatNo: 'E5', movieName: movieName),
+                  MovieSeat(
+                      seatNo: 'E1', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'E2', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'E3', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'E4', movieName: movieName, theater: theater),
+                  MovieSeat(
+                      seatNo: 'E5', movieName: movieName, theater: theater),
                 ],
               ),
             ),
@@ -133,7 +162,7 @@ class SeatSelectionPage extends StatelessWidget {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: const CircleBorder(),
-                  primary: Colors.green,
+                  primary: kPrimaryColor,
                   fixedSize: const Size(60, 60),
                 ),
                 onPressed: () {
@@ -144,12 +173,26 @@ class SeatSelectionPage extends StatelessWidget {
                         builder: (context, controller) {
                           return Flash.bar(
                             controller: controller,
-                            child: const Text(
-                              'Choose atleast one seat',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  backgroundColor: Colors.red),
+                            child: Padding(
+                              padding: const EdgeInsets.all(13.0),
+                              child: Container(
+                                height: 35,
+                                width: MediaQuery.of(context).size.width,
+                                child: Row(
+                                  children: [
+                                    const Icon(Icons.dangerous,
+                                        color: kPrimaryColor),
+                                    const SizedBox(width: 8),
+                                    Text(
+                                      'Choose atleast one seat',
+                                      style: const TextStyle(
+                                        fontSize: 16,
+                                        color: kPrimaryColor,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           );
                         });
@@ -193,14 +236,19 @@ class SeatSelectionPage extends StatelessWidget {
 class MovieSeat extends StatelessWidget {
   final String seatNo;
   final String movieName;
+  final String theater;
 
-  const MovieSeat({Key? key, required this.seatNo, required this.movieName})
+  const MovieSeat(
+      {Key? key,
+      required this.seatNo,
+      required this.movieName,
+      required this.theater})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) => getIt<MovieBlocBloc>()
-          ..add(MovieBlocEvent.getMovieSeats(movieName)),
+          ..add(MovieBlocEvent.getMovieSeats(movieName, theater)),
         child: BlocConsumer<MovieBlocBloc, MovieBlocState>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -220,8 +268,9 @@ class MovieSeat extends StatelessWidget {
                     ],
                     buttonLables: [seatNo],
                     checkBoxButtonValues: (value) {},
-                    selectedColor: Colors.green,
+                    selectedColor: kPrimaryColor,
                     unSelectedColor: Colors.grey.shade600,
+                    unSelectedBorderColor: Colors.grey.shade600,
                   ),
                 ),
               );
@@ -242,8 +291,10 @@ class MovieSeat extends StatelessWidget {
                       personMovieList.add(seatNo);
                     }
                   },
-                  selectedColor: Colors.green,
-                  unSelectedColor: Colors.white,
+                  selectedColor: kPrimaryColor,
+                  selectedBorderColor: kPrimaryColor,
+                  unSelectedColor: kPrimaryColor.withAlpha(50),
+                  unSelectedBorderColor: kPrimaryColor.withAlpha(50),
                 ),
               );
             }

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:moviebee/presentation/core/contants.dart';
 
 class DetailedCMViewPage extends StatelessWidget {
   const DetailedCMViewPage({
@@ -36,6 +37,7 @@ class DetailedCMViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kPrimaryColor.withAlpha(50),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,6 +79,7 @@ class DetailedCMViewPage extends StatelessWidget {
               child: Text(
                 movieName,
                 style: const TextStyle(
+                  color: Colors.white,
                   fontSize: 38,
                   fontWeight: FontWeight.bold,
                 ),
@@ -85,12 +88,16 @@ class DetailedCMViewPage extends StatelessWidget {
             Center(
               child: Text(
                 gerne,
+                style: const TextStyle(color: Colors.white),
               ),
             ),
             const SizedBox(height: 50),
             const Padding(
               padding: EdgeInsets.only(left: 15),
-              child: Text('Cast & Crew\n'),
+              child: Text(
+                'Cast & Crew\n',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -107,6 +114,7 @@ class DetailedCMViewPage extends StatelessWidget {
               child: Text(
                 'Storyline',
                 style: TextStyle(
+                  color: Colors.white,
                   fontSize: 20,
                 ),
               ),

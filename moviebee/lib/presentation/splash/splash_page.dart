@@ -2,7 +2,9 @@ import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:moviebee/application/auth/bloc/auth_bloc.dart';
+import 'package:moviebee/presentation/core/contants.dart';
 import 'package:moviebee/presentation/routes/router.gr.dart';
 
 class SplashPage extends StatelessWidget {
@@ -24,9 +26,28 @@ class SplashPage extends StatelessWidget {
           },
         );
       },
-      child: const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(color: Colors.white),
+      child: Scaffold(
+        body: Container(
+          color: kPrimaryColor.withAlpha(50),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 300,
+              ),
+              Center(
+                child: Text(
+                  'MB',
+                  style: GoogleFonts.pacifico(
+                    color: kPrimaryColor,
+                    fontSize: 45,
+                  ),
+                ),
+              ),
+              const Center(
+                child: CircularProgressIndicator(color: kPrimaryColor),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -4,9 +4,12 @@ import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:moviebee/application/auth/signin_form/signin_form_bloc.dart';
 import 'package:moviebee/injection.dart';
+import 'package:moviebee/presentation/core/contants.dart';
+import 'package:moviebee/presentation/movie/booking_sections/seat_selection_page.dart';
 import 'package:moviebee/presentation/routes/router.gr.dart';
 
 class TopUpWalletPage extends StatelessWidget {
@@ -19,7 +22,9 @@ class TopUpWalletPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: kPrimaryColor,
+        ),
         body: BlocProvider(
           create: (context) => getIt<SigninFormBloc>(),
           child: BlocConsumer<SigninFormBloc, SigninFormState>(
@@ -37,12 +42,27 @@ class TopUpWalletPage extends StatelessWidget {
                     builder: (context, controller) {
                       return Flash.bar(
                         controller: controller,
-                        child: Text(
-                          bar,
-                          style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              backgroundColor: Colors.red),
+                        backgroundColor: kPrimaryColor.withAlpha(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(13.0),
+                          child: Container(
+                            height: 35,
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(
+                              children: [
+                                const Icon(Icons.dangerous,
+                                    color: kPrimaryColor),
+                                const SizedBox(width: 8),
+                                Text(
+                                  bar,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       );
                     });
@@ -54,84 +74,142 @@ class TopUpWalletPage extends StatelessWidget {
                     builder: (context, controller) {
                       return Flash.bar(
                         controller: controller,
-                        child: const Text(
-                          'Amount added successfully',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              backgroundColor: Colors.green),
-                        ),
-                      );
-                    });
-                context.router.push(const ViewBalancePageRoute());
-              }),
-            );
-          }, builder: (context, state) {
-            return Form(
-              autovalidateMode: state.showErrorMessages,
-              child: ListView(
-                children: [
-                  const SizedBox(height: 100),
-                  const Text(
-                    'Add Amount',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 60,
-                    ),
-                  ),
-                  const SizedBox(height: 50),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      // ignore: unnecessary_raw_strings
-                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                    ],
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      labelText: 'Enter Amount',
-                    ),
-                    autocorrect: false,
-                    onChanged: (value) => context.bloc<SigninFormBloc>().add(
-                          SigninFormEvent.amountChanged(value),
-                        ),
-                    validator: (_) => context
-                        .bloc<SigninFormBloc>()
-                        .state
-                        .amount!
-                        .value
-                        .fold(
-                          (f) => f.maybeMap(
-                            emptyCredential: (_) => 'Amount cannot be empty!',
-                            invalidAmount: (_) => 'Amount cannot be zero!',
-                            orElse: () => null,
-                          ),
-                          (_) => null,
-                        ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextButton(
-                          onPressed: () {
-                            context.bloc<SigninFormBloc>().add(
-                                SigninFormEvent.addWalletAmountPressed(
-                                    balance));
-                          },
-                          child: const Text(
-                            'Add Amount',
-                            style: TextStyle(
-                              color: Colors.white,
+                        backgroundColor: kPrimaryColor.withAlpha(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(13.0),
+                          child: Container(
+                            height: 35,
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(
+                              children: [
+                                const Icon(Icons.check, color: kPrimaryColor),
+                                const SizedBox(width: 8),
+                                Text(
+                                  'Amount added successfully',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
+                      );
+                    });
+                context.router.replace(const HomePageRoute());
+              }),
+            );
+          }, builder: (context, state) {
+            return Container(
+              color: kPrimaryColor.withAlpha(50),
+              child: Padding(
+                padding: const EdgeInsets.all(13.0),
+                child: Form(
+                  autovalidateMode: state.showErrorMessages,
+                  child: ListView(
+                    children: [
+                      const SizedBox(height: 100),
+                      Text(
+                        'Add Amount',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.pacifico(
+                          color: kPrimaryColor,
+                          fontSize: 35,
+                        ),
                       ),
+                      const SizedBox(height: 50),
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 2),
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: kPrimaryColor.withAlpha(50),
+                        ),
+                        child: TextFormField(
+                          cursorColor: kPrimaryColor,
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            // ignore: unnecessary_raw_strings
+                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                          ],
+                          decoration: const InputDecoration(
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.only(bottom: 5),
+                              child: Icon(
+                                Icons.email,
+                                color: kPrimaryColor,
+                              ),
+                            ),
+                            hintText: 'Enter Amount',
+                            border: InputBorder.none,
+                          ),
+                          autocorrect: false,
+                          onChanged: (value) =>
+                              context.bloc<SigninFormBloc>().add(
+                                    SigninFormEvent.amountChanged(value),
+                                  ),
+                          validator: (_) => context
+                              .bloc<SigninFormBloc>()
+                              .state
+                              .amount!
+                              .value
+                              .fold(
+                                (f) => f.maybeMap(
+                                  emptyCredential: (_) =>
+                                      'Amount cannot be empty!',
+                                  invalidAmount: (_) =>
+                                      'Amount cannot be zero!',
+                                  orElse: () => null,
+                                ),
+                                (_) => null,
+                              ),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextButton(
+                              onPressed: () {
+                                context.bloc<SigninFormBloc>().add(
+                                    SigninFormEvent.addWalletAmountPressed(
+                                        balance));
+                                personMovieList = [];
+                                seatListFinal = '';
+                              },
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(kPrimaryColor),
+                                  shape: MaterialStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(18.0),
+                                          side: const BorderSide(
+                                              color: kPrimaryColor)))),
+                              child: const Text(
+                                'Add Amount',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      if (state.isSubmitting!) ...[
+                        const SizedBox(height: 8),
+                        LinearProgressIndicator(
+                          value: null,
+                          backgroundColor: kPrimaryColor.withAlpha(50),
+                          color: kPrimaryColor,
+                        ),
+                      ]
                     ],
                   ),
-                  if (state.isSubmitting!) ...[
-                    const SizedBox(height: 8),
-                    const LinearProgressIndicator(value: null),
-                  ]
-                ],
+                ),
               ),
             );
           }),

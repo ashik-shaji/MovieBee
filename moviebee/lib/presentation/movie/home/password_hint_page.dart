@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviebee/application/auth/signin_form/signin_form_bloc.dart';
 import 'package:moviebee/injection.dart';
+import 'package:moviebee/presentation/core/contants.dart';
 import 'package:moviebee/presentation/routes/router.gr.dart';
 
 class PasswordHintPage extends StatelessWidget {
@@ -11,6 +12,7 @@ class PasswordHintPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: kPrimaryColor,
           title: const Text('Update Password Hint'),
         ),
         body: BlocProvider(
@@ -30,12 +32,27 @@ class PasswordHintPage extends StatelessWidget {
                     builder: (context, controller) {
                       return Flash.bar(
                         controller: controller,
-                        child: Text(
-                          bar,
-                          style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              backgroundColor: Colors.red),
+                        backgroundColor: kPrimaryColor.withAlpha(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(13.0),
+                          child: Container(
+                            height: 35,
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(
+                              children: [
+                                const Icon(Icons.dangerous,
+                                    color: kPrimaryColor),
+                                const SizedBox(width: 8),
+                                Text(
+                                  bar,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       );
                     });
@@ -46,12 +63,26 @@ class PasswordHintPage extends StatelessWidget {
                     builder: (context, controller) {
                       return Flash.bar(
                         controller: controller,
-                        child: const Text(
-                          'Password Hint Updated Successfully',
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              backgroundColor: Colors.green),
+                        backgroundColor: kPrimaryColor.withAlpha(50),
+                        child: Padding(
+                          padding: const EdgeInsets.all(13.0),
+                          child: Container(
+                            height: 35,
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(
+                              children: [
+                                const Icon(Icons.check, color: kPrimaryColor),
+                                const SizedBox(width: 8),
+                                const Text(
+                                  'Password Hint Updated Successfully',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: kPrimaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       );
                     });
@@ -59,57 +90,94 @@ class PasswordHintPage extends StatelessWidget {
               }),
             );
           }, builder: (context, state) {
-            return Form(
-              autovalidateMode: state.showErrorMessages,
-              child: ListView(
-                children: [
-                  const SizedBox(height: 50),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.email),
-                      labelText: 'Enter Password Hint',
-                    ),
-                    autocorrect: false,
-                    onChanged: (value) => context.bloc<SigninFormBloc>().add(
-                          SigninFormEvent.passwordHintChanged(value),
-                        ),
-                    validator: (_) => context
-                        .bloc<SigninFormBloc>()
-                        .state
-                        .passwordHint!
-                        .value
-                        .fold(
-                          (f) => f.maybeMap(
-                            emptyCredential: (_) =>
-                                'Password Hint cannot be empty !',
-                            orElse: () => null,
+            return Padding(
+              padding: const EdgeInsets.all(13.0),
+              child: Form(
+                autovalidateMode: state.showErrorMessages,
+                child: ListView(
+                  children: [
+                    const SizedBox(height: 50),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 2),
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: kPrimaryColor.withAlpha(50),
+                      ),
+                      child: TextFormField(
+                        cursorColor: kPrimaryColor,
+                        decoration: const InputDecoration(
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.only(bottom: 5),
+                            child: Icon(
+                              Icons.email,
+                              color: kPrimaryColor,
+                            ),
                           ),
-                          (_) => null,
+                          hintText: 'Enter Password Hint',
+                          border: InputBorder.none,
                         ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextButton(
-                          onPressed: () {
+                        autocorrect: false,
+                        onChanged: (value) =>
                             context.bloc<SigninFormBloc>().add(
-                                const SigninFormEvent.setPasswordHintPressed());
-                          },
-                          child: const Text(
-                            'Update',
-                            style: TextStyle(
-                              color: Colors.white,
+                                  SigninFormEvent.passwordHintChanged(value),
+                                ),
+                        validator: (_) => context
+                            .bloc<SigninFormBloc>()
+                            .state
+                            .passwordHint!
+                            .value
+                            .fold(
+                              (f) => f.maybeMap(
+                                emptyCredential: (_) =>
+                                    'Password Hint cannot be empty !',
+                                orElse: () => null,
+                              ),
+                              (_) => null,
+                            ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextButton(
+                            onPressed: () {
+                              context.bloc<SigninFormBloc>().add(
+                                  const SigninFormEvent
+                                      .setPasswordHintPressed());
+                            },
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(kPrimaryColor),
+                                shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(18.0),
+                                        side: const BorderSide(
+                                            color: kPrimaryColor)))),
+                            child: const Text(
+                              'Update',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
+                      ],
+                    ),
+                    if (state.isSubmitting!) ...[
+                      const SizedBox(height: 8),
+                      LinearProgressIndicator(
+                        value: null,
+                        backgroundColor: kPrimaryColor.withAlpha(50),
+                        color: kPrimaryColor,
                       ),
-                    ],
-                  ),
-                  if (state.isSubmitting!) ...[
-                    const SizedBox(height: 8),
-                    const LinearProgressIndicator(value: null),
-                  ]
-                ],
+                    ]
+                  ],
+                ),
               ),
             );
           }),

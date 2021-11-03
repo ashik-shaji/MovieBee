@@ -16,9 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MovieBlocEventTearOff {
   const _$MovieBlocEventTearOff();
 
-  GetMovieSeats getMovieSeats(String movieNameStr) {
+  GetMovieSeats getMovieSeats(String movieNameStr, String theater) {
     return GetMovieSeats(
       movieNameStr,
+      theater,
     );
   }
 }
@@ -29,15 +30,17 @@ const $MovieBlocEvent = _$MovieBlocEventTearOff();
 /// @nodoc
 mixin _$MovieBlocEvent {
   String get movieNameStr => throw _privateConstructorUsedError;
+  String get theater => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String movieNameStr) getMovieSeats,
+    required TResult Function(String movieNameStr, String theater)
+        getMovieSeats,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String movieNameStr)? getMovieSeats,
+    TResult Function(String movieNameStr, String theater)? getMovieSeats,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +66,7 @@ abstract class $MovieBlocEventCopyWith<$Res> {
   factory $MovieBlocEventCopyWith(
           MovieBlocEvent value, $Res Function(MovieBlocEvent) then) =
       _$MovieBlocEventCopyWithImpl<$Res>;
-  $Res call({String movieNameStr});
+  $Res call({String movieNameStr, String theater});
 }
 
 /// @nodoc
@@ -78,11 +81,16 @@ class _$MovieBlocEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object? movieNameStr = freezed,
+    Object? theater = freezed,
   }) {
     return _then(_value.copyWith(
       movieNameStr: movieNameStr == freezed
           ? _value.movieNameStr
           : movieNameStr // ignore: cast_nullable_to_non_nullable
+              as String,
+      theater: theater == freezed
+          ? _value.theater
+          : theater // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -95,7 +103,7 @@ abstract class $GetMovieSeatsCopyWith<$Res>
           GetMovieSeats value, $Res Function(GetMovieSeats) then) =
       _$GetMovieSeatsCopyWithImpl<$Res>;
   @override
-  $Res call({String movieNameStr});
+  $Res call({String movieNameStr, String theater});
 }
 
 /// @nodoc
@@ -112,11 +120,16 @@ class _$GetMovieSeatsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? movieNameStr = freezed,
+    Object? theater = freezed,
   }) {
     return _then(GetMovieSeats(
       movieNameStr == freezed
           ? _value.movieNameStr
           : movieNameStr // ignore: cast_nullable_to_non_nullable
+              as String,
+      theater == freezed
+          ? _value.theater
+          : theater // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -125,14 +138,16 @@ class _$GetMovieSeatsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetMovieSeats implements GetMovieSeats {
-  const _$GetMovieSeats(this.movieNameStr);
+  const _$GetMovieSeats(this.movieNameStr, this.theater);
 
   @override
   final String movieNameStr;
+  @override
+  final String theater;
 
   @override
   String toString() {
-    return 'MovieBlocEvent.getMovieSeats(movieNameStr: $movieNameStr)';
+    return 'MovieBlocEvent.getMovieSeats(movieNameStr: $movieNameStr, theater: $theater)';
   }
 
   @override
@@ -141,12 +156,16 @@ class _$GetMovieSeats implements GetMovieSeats {
         (other is GetMovieSeats &&
             (identical(other.movieNameStr, movieNameStr) ||
                 const DeepCollectionEquality()
-                    .equals(other.movieNameStr, movieNameStr)));
+                    .equals(other.movieNameStr, movieNameStr)) &&
+            (identical(other.theater, theater) ||
+                const DeepCollectionEquality().equals(other.theater, theater)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(movieNameStr);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(movieNameStr) ^
+      const DeepCollectionEquality().hash(theater);
 
   @JsonKey(ignore: true)
   @override
@@ -156,19 +175,20 @@ class _$GetMovieSeats implements GetMovieSeats {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String movieNameStr) getMovieSeats,
+    required TResult Function(String movieNameStr, String theater)
+        getMovieSeats,
   }) {
-    return getMovieSeats(movieNameStr);
+    return getMovieSeats(movieNameStr, theater);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String movieNameStr)? getMovieSeats,
+    TResult Function(String movieNameStr, String theater)? getMovieSeats,
     required TResult orElse(),
   }) {
     if (getMovieSeats != null) {
-      return getMovieSeats(movieNameStr);
+      return getMovieSeats(movieNameStr, theater);
     }
     return orElse();
   }
@@ -195,10 +215,13 @@ class _$GetMovieSeats implements GetMovieSeats {
 }
 
 abstract class GetMovieSeats implements MovieBlocEvent {
-  const factory GetMovieSeats(String movieNameStr) = _$GetMovieSeats;
+  const factory GetMovieSeats(String movieNameStr, String theater) =
+      _$GetMovieSeats;
 
   @override
   String get movieNameStr => throw _privateConstructorUsedError;
+  @override
+  String get theater => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $GetMovieSeatsCopyWith<GetMovieSeats> get copyWith =>

@@ -25,7 +25,7 @@ class MovieBlocBloc extends Bloc<MovieBlocEvent, MovieBlocState> {
     yield* event.map(getMovieSeats: (e) async* {
       Either<MovieFailure, String>? seatStr;
       print('what problem');
-      seatStr = await _movieRepository.getSeats(e.movieNameStr);
+      seatStr = await _movieRepository.getSeats(e.movieNameStr, e.theater);
 
       yield state.copyWith(
         movieSeats: UserName(seatStr.getOrElse(() => 'failed bloc')),

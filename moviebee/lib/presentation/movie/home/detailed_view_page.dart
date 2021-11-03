@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:moviebee/presentation/core/contants.dart';
 import 'package:moviebee/presentation/movie/booking_sections/date_time_theater_selection_page.dart';
 import 'package:moviebee/presentation/routes/router.gr.dart';
 
@@ -38,6 +39,7 @@ class DetailedViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kPrimaryColor.withAlpha(50),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +72,7 @@ class DetailedViewPage extends StatelessWidget {
                     onPressed: () {
                       context.router.pop();
                     },
-                    icon: const Icon(Icons.arrow_back),
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
                   ),
                 )
               ],
@@ -79,6 +81,7 @@ class DetailedViewPage extends StatelessWidget {
               child: Text(
                 movieName,
                 style: const TextStyle(
+                  color: Colors.white,
                   fontSize: 38,
                   fontWeight: FontWeight.bold,
                 ),
@@ -87,6 +90,7 @@ class DetailedViewPage extends StatelessWidget {
             Center(
               child: Text(
                 gerne,
+                style: const TextStyle(color: Colors.white),
               ),
             ),
             const SizedBox(height: 10),
@@ -103,7 +107,12 @@ class DetailedViewPage extends StatelessWidget {
             const SizedBox(height: 50),
             const Padding(
               padding: EdgeInsets.only(left: 15),
-              child: Text('Cast & Crew\n'),
+              child: Text(
+                'Cast & Crew\n',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -120,6 +129,7 @@ class DetailedViewPage extends StatelessWidget {
               child: Text(
                 'Storyline',
                 style: TextStyle(
+                  color: Colors.white,
                   fontSize: 20,
                 ),
               ),

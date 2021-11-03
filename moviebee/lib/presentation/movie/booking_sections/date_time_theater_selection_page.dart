@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
 import 'package:flutter/material.dart';
+import 'package:moviebee/presentation/core/contants.dart';
 import 'package:moviebee/presentation/routes/router.gr.dart';
 
 class DateTimeTheaterSelectionPage extends StatelessWidget {
@@ -21,8 +22,15 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int movieDay = DateTime.now().day;
-    String movieDaySelected = (movieDay + 1).toString();
+    final movieDay = DateTime.now();
+    final day1 = movieDay.add(const Duration(days: 1)).day;
+    final day2 = movieDay.add(const Duration(days: 2)).day;
+    final day3 = movieDay.add(const Duration(days: 3)).day;
+    final day4 = movieDay.add(const Duration(days: 4)).day;
+    final day5 = movieDay.add(const Duration(days: 5)).day;
+    final day6 = movieDay.add(const Duration(days: 6)).day;
+
+    String movieDaySelected = (day1).toString();
     String movieTime = '10:00';
     String theater = 'Majestic Theatre';
     return Scaffold(
@@ -35,7 +43,10 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
               onPressed: () {
                 context.router.pop();
               },
-              icon: const Icon(Icons.arrow_back),
+              icon: const Icon(
+                Icons.arrow_back,
+                color: kPrimaryColor,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),
@@ -45,37 +56,39 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
                   const Text(
                     'Choose Date',
                     style: TextStyle(
+                      color: kPrimaryColor,
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 5),
                   CustomRadioButton(
-                    defaultSelected: (movieDay + 1).toString(),
+                    defaultSelected: (day1).toString(),
                     elevation: 0,
                     height: 100,
                     width: 80,
-                    unSelectedBorderColor: Colors.white70,
-                    selectedBorderColor: Colors.green,
+                    unSelectedBorderColor: kPrimaryColor.withAlpha(50),
+                    selectedBorderColor: kPrimaryColor,
                     enableShape: true,
                     buttonLables: [
-                      (movieDay + 1).toString(),
-                      (movieDay + 2).toString(),
-                      (movieDay + 3).toString(),
-                      (movieDay + 4).toString(),
-                      (movieDay + 5).toString(),
-                      (movieDay + 6).toString(),
+                      (day1).toString(),
+                      (day2).toString(),
+                      (day3).toString(),
+                      (day4).toString(),
+                      (day5).toString(),
+                      (day6).toString(),
                     ],
                     buttonValues: [
-                      (movieDay + 1).toString(),
-                      (movieDay + 2).toString(),
-                      (movieDay + 3).toString(),
-                      (movieDay + 4).toString(),
-                      (movieDay + 5).toString(),
-                      (movieDay + 6).toString(),
+                      (day1).toString(),
+                      (day2).toString(),
+                      (day3).toString(),
+                      (day4).toString(),
+                      (day5).toString(),
+                      (day6).toString(),
                     ],
                     buttonTextStyle: const ButtonTextStyle(
-                        unSelectedColor: Colors.white,
+                        unSelectedColor: kPrimaryColor,
+                        selectedColor: kPrimaryColor,
                         textStyle: TextStyle(
                           fontSize: 18,
                         )),
@@ -91,6 +104,7 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
                   const Text(
                     'Choose Time',
                     style: TextStyle(
+                      color: kPrimaryColor,
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
@@ -101,8 +115,8 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
                     elevation: 0,
                     height: 70,
                     width: 200,
-                    unSelectedBorderColor: Colors.white70,
-                    selectedBorderColor: Colors.green,
+                    unSelectedBorderColor: kPrimaryColor.withAlpha(50),
+                    selectedBorderColor: kPrimaryColor,
                     enableShape: true,
                     buttonLables: [
                       '10:00',
@@ -119,7 +133,8 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
                       '09:00',
                     ],
                     buttonTextStyle: const ButtonTextStyle(
-                        unSelectedColor: Colors.white,
+                        unSelectedColor: kPrimaryColor,
+                        selectedColor: kPrimaryColor,
                         textStyle: TextStyle(
                           fontSize: 18,
                         )),
@@ -135,6 +150,7 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
                   const Text(
                     'Choose Theater',
                     style: TextStyle(
+                      color: kPrimaryColor,
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
@@ -145,8 +161,8 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
                     elevation: 0,
                     height: 70,
                     width: 200,
-                    unSelectedBorderColor: Colors.white70,
-                    selectedBorderColor: Colors.green,
+                    unSelectedBorderColor: kPrimaryColor.withAlpha(50),
+                    selectedBorderColor: kPrimaryColor,
                     enableShape: true,
                     buttonLables: [
                       'Majestic Theatre',
@@ -161,13 +177,13 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
                       'New Plaza Cinema',
                     ],
                     buttonTextStyle: const ButtonTextStyle(
-                        unSelectedColor: Colors.white,
+                        unSelectedColor: kPrimaryColor,
+                        selectedColor: kPrimaryColor,
                         textStyle: TextStyle(
                           fontSize: 18,
                         )),
                     radioButtonValue: (value) {
                       theater = value.toString();
-                      print(theater);
                     },
                     horizontal: true,
                     unSelectedColor: Colors.transparent,
@@ -177,7 +193,7 @@ class DateTimeTheaterSelectionPage extends StatelessWidget {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: const CircleBorder(),
-                        primary: Colors.green,
+                        primary: kPrimaryColor,
                         fixedSize: const Size(60, 60),
                       ),
                       onPressed: () {

@@ -15,7 +15,7 @@ import 'package:moviebee/infrastructure/core/keys.dart';
 @LazySingleton(as: IAuthFacade)
 class SqlAuthFacade implements IAuthFacade {
   late SharedPreferences sharedPreferencesInstance;
-  final ipAddressV6 = '192.168.29.170';
+  final ipAddressV6 = '192.168.230.170';
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({

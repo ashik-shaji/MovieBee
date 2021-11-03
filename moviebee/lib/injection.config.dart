@@ -7,9 +7,11 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import 'application/auth/bloc/auth_bloc.dart' as _i9;
+import 'application/auth/bloc/auth_bloc.dart' as _i10;
 import 'application/auth/signin_form/signin_form_bloc.dart' as _i8;
+import 'application/booking/bloc/booking_bloc.dart' as _i11;
 import 'application/movie/bloc/movie_bloc_bloc.dart' as _i7;
+import 'application/tickets/bloc/tickets_bloc.dart' as _i9;
 import 'domain/auth/i_auth_facade.dart' as _i3;
 import 'domain/movie/i_movie_repository.dart' as _i5;
 import 'infrastructure/auth/sql_auth_facade.dart' as _i4;
@@ -27,6 +29,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i7.MovieBlocBloc(get<_i5.IMovieRepository>()));
   gh.factory<_i8.SigninFormBloc>(
       () => _i8.SigninFormBloc(get<_i3.IAuthFacade>()));
-  gh.factory<_i9.AuthBloc>(() => _i9.AuthBloc(get<_i3.IAuthFacade>()));
+  gh.factory<_i9.TicketsBloc>(
+      () => _i9.TicketsBloc(get<_i5.IMovieRepository>()));
+  gh.factory<_i10.AuthBloc>(() => _i10.AuthBloc(get<_i3.IAuthFacade>()));
+  gh.factory<_i11.BookingBloc>(() =>
+      _i11.BookingBloc(get<_i5.IMovieRepository>(), get<_i3.IAuthFacade>()));
   return get;
 }

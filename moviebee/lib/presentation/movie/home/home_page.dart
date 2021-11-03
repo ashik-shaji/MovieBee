@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviebee/application/auth/bloc/auth_bloc.dart';
 import 'package:moviebee/application/auth/signin_form/signin_form_bloc.dart';
 import 'package:moviebee/injection.dart';
+import 'package:moviebee/presentation/core/contants.dart';
 import 'package:moviebee/presentation/movie/home/widgets/coming_soon_list.dart';
 import 'package:moviebee/presentation/movie/home/widgets/now_playing_list.dart';
 import 'package:moviebee/presentation/movie/wallet/view_balance_page.dart';
@@ -23,59 +24,75 @@ class HomePage extends StatelessWidget {
       },
       child: Scaffold(
         drawer: Drawer(
-            child: ListView(
-          children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(color: Colors.black54),
-              child: Center(
-                child: Column(
-                  children: [
-                    const SizedBox(height: 15),
-                    Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white),
-                        color: Colors.white,
+            child: Container(
+          color: kPrimaryColor.withAlpha(50),
+          child: ListView(
+            children: [
+              DrawerHeader(
+                decoration: const BoxDecoration(color: kPrimaryColor),
+                child: Center(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 15),
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white),
+                          color: Colors.white,
+                        ),
+                        child: const Icon(
+                          Icons.person,
+                          color: kPrimaryColor,
+                          size: 80,
+                        ),
                       ),
-                      child: const Icon(
-                        Icons.person,
-                        color: Colors.black87,
-                        size: 80,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    const TitleText(hiStr: 'drawer'),
-                  ],
+                      const SizedBox(height: 5),
+                      const TitleText(hiStr: 'drawer'),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.monetization_on_outlined,
-                color: Colors.white,
-                size: 22,
+              ListTile(
+                leading: const Icon(
+                  Icons.monetization_on_outlined,
+                  color: kPrimaryColor,
+                  size: 22,
+                ),
+                title: const Text("Wallet",
+                    style: TextStyle(color: kPrimaryColor, fontSize: 17)),
+                onTap: () {
+                  context.router.push(const ViewBalancePageRoute());
+                },
               ),
-              title: const Text("Wallet",
-                  style: TextStyle(color: Colors.white, fontSize: 17)),
-              onTap: () {
-                context.router.push(const ViewBalancePageRoute());
-              },
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.exit_to_app,
-                color: Colors.white,
-                size: 22,
+              ListTile(
+                leading: const Icon(
+                  Icons.receipt_long,
+                  color: kPrimaryColor,
+                  size: 22,
+                ),
+                title: const Text("My Tickets",
+                    style: TextStyle(color: kPrimaryColor, fontSize: 17)),
+                onTap: () {
+                  context.router.push(const TicketDisplayPageRoute());
+                },
               ),
-              title: const Text("Exit",
-                  style: TextStyle(color: Colors.white, fontSize: 17)),
-              onTap: () {
-                context.bloc<AuthBloc>().add(const AuthEvent.signedOut());
-              },
-            ),
-          ],
+              ListTile(
+                leading: const Icon(
+                  Icons.exit_to_app,
+                  color: kPrimaryColor,
+                  size: 22,
+                ),
+                title: const Text("Log Out",
+                    style: TextStyle(color: kPrimaryColor, fontSize: 17)),
+                onTap: () {
+                  context.bloc<AuthBloc>().add(const AuthEvent.signedOut());
+                },
+              ),
+            ],
+          ),
         )),
         appBar: AppBar(
+          backgroundColor: kPrimaryColor,
           title: const TitleText(hiStr: 'hi'),
           leading: Builder(
             builder: (context) {
@@ -111,17 +128,23 @@ class HomePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
-                color: Colors.white70,
+                color: kPrimaryColor,
               ),
             ),
             const SizedBox(height: 10),
             Expanded(child: NowPlayingList()),
+            /*Padding(
+              padding: const EdgeInsets.all(13.0),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset('assets/ad/ad2.jpeg')),
+            ),*/
             const Text(
               'Coming Soon',
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
-                color: Colors.white70,
+                color: kPrimaryColor,
               ),
             ),
             const SizedBox(height: 10),
